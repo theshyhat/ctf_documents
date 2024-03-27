@@ -1,0 +1,65 @@
+import paramiko
+
+def ssh_connect(host, port, username, password):
+    # Create SSH client
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    try:
+        # Connect to the server
+        ssh.connect(host, port=port, username=username, password=password)
+        print("Connected to the server")
+
+        # Start the binary search game
+        start_game(ssh)
+
+    except Exception as e:
+        print("Failed to connect:", e)
+    finally:
+        # Close the SSH connection
+        ssh.close()
+
+def start_game(ssh):
+    # Define the range of numbers
+    lower_bound = 1
+    upper_bound = 1000
+    attempts = 10
+
+    print("Guess a number between 1 and 1000.")
+    print("You have 10 attempts.")
+
+    while attempts > 0:
+        # Calculate the midpoint for binary search
+        guess = (lower_bound + upper_bound) // 2
+        print("Guessing:", guess)
+
+        # Send the guess to the server
+        stdin, stdout, stderr = ssh.exec_command(str(guess))
+        response = stdout.read().decode().strip()
+
+        if response == "correct":
+            print("Congratulations! You guessed the correct number.")
+            break
+        elif response == "lower":
+            print("Too high.")
+            upper_bound = guess - 1
+        elif response == "higher":
+            print("Too low.")
+            lower_bound = guess + 1
+        else:
+            print("Invalid response from server.")
+            break
+
+        attempts -= 1
+
+    if attempts == 0:
+        print("You have run out of attempts. The correct number was not found.")
+
+if __name__ == "__main__":
+    # SSH connection details
+    host = "atlas.picoctf.net"
+    port = 63278  # Default SSH port
+    username = "ctf-player"
+    password = "f3b61b38"
+
+    ssh_connect(host, port, username, password)

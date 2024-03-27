@@ -1,0 +1,5 @@
+git branch -a
+cat part-1 part-2, and part-3
+git show all the things
+
+picoCTF{t3@mw0rk_m@k3s_th3_dr3@m_w0rk_2c91ca76}

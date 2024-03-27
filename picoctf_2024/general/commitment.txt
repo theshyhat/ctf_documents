@@ -1,0 +1,6 @@
+create folder
+download zip
+unzip file
+search how to lookup git history
+search how to lookup specific git commit details
+git show 87b85d7dfb839b077678611280fa023d76e017b8

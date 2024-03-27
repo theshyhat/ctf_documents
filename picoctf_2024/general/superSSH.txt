@@ -1,0 +1,1 @@
+just login via ssh and you get the flag

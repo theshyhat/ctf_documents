@@ -1,0 +1,3 @@
+look at the message.txt file
+lookup how to lookup the commit history
+command == git log

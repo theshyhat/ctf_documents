@@ -1,0 +1,5 @@
+open webpage
+look at page source
+look at "about" page source
+note the potential base64 encoded string
+decode the string

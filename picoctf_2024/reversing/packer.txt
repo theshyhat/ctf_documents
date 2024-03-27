@@ -1,0 +1,8 @@
+download file
+the hint indicates that the binary has been compressed
+lookup what programs can be used to compress ELF binaries
+look at the strings
+unpack using UPX ( upx -d filename )
+run strings on the binary again
+copy the long hex string
+plug it into a hex to ASCII converter

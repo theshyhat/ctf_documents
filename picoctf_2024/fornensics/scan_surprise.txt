@@ -1,0 +1,1 @@
+scan the QR code to receive the flag. you can use different QR code apps on the internet to achieve this

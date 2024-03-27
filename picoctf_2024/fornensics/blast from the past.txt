@@ -1,0 +1,27 @@
+we can use the following exiftool commands to set a few of the metadata tags
+
+exiftool -TimeStamp="1970:01:01 00:00:00.001+00:00" original.jpg
+exiftool -ModifyDate="1970:01:01 00:00:00.001+00:00" original.jpg
+exiftool -CreateDate="1970:01:01 00:00:00.001+00:00" original.jpg
+exiftool -DateTimeOriginal="1970:01:01 00:00:00.001+00:00" original.jpg
+
+After launching the challenge server in the challenge window, we use the following commands to send our image file to the server, then check whether the requirements on the image have been met:
+
+nc -w 2 mimas.picoctf.net portNumber < original.jpg
+nc mimas.picoctf.net portNumber
+
+We then learn that one of the values is slightly off. We'll need to use a hex editor to edit the time value from
+
+1970:01:01 00:00:00.703 to 1970:01:01 00:00:00.001
+
+In hexedit, we can use the / key to active hex search, and we'll need to search for the hex equivalent of ASCII 703, which is "37 30 33". We have to replace all instances of "703" in the file. There are 3.
+
+We try uploading and checking the file again, and now it says that the Samsung Time Stamp isn't the correct value.
+
+After some searching, we find that the following value, "Image_UTC_Data" and the following 13 characters after that control the value of the Samsung Time Stamp.
+
+With hexedit, we can just search for the hex for Image, which is "49 6D 61 67 65"
+
+The hex values after Image_UTC_Data have to match the number 0000000000001, which in hex is "30 30 30 30 30 30 30 30 30 30 30 30 31" 
+
+Upload and check the file, and you're done!

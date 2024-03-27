@@ -1,0 +1,8 @@
+unzip the file
+enter the drop-in directory
+cat the checksum file
+
+sha256sum files/* | grep fba9f49bf22aa7188a155768ab0dfdc1f9b86c47976cd0f7c9003af2e20598f7
+
+login to SSH instance to complete challenge
+

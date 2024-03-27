@@ -1,0 +1,53 @@
+# The program is looking for the ASCII hex representation of the # words it presents to the user.
+
+import socket
+
+def send_word_to_server(word):
+    # Connect to the server
+    host = 'titan.picoctf.net'  # Change this to the server address
+    port = 52657  # Change this to the server port
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
+        
+        # Send the little-endian ASCII hex code rendering of the word followed by a newline
+        little_endian_hex = ''.join(format(ord(char), '02x') for char in reversed(word)) + '\n'
+        s.sendall(little_endian_hex.encode('utf-8'))
+        
+        # Send the big-endian ASCII hex code rendering of the word followed by a newline
+        big_endian_hex = ''.join(format(ord(char), '02x') for char in word) + '\n'
+        s.sendall(big_endian_hex.encode('utf-8'))
+        
+        # Receive the response from the server
+        response = s.recv(4096).decode('utf-8')
+        
+        return response
+
+def get_word_from_server():
+    # Connect to the server
+    host = 'titan.picoctf.net'  # Change this to the server address
+    port = 52657  # Change this to the server port
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
+        
+        # Receive the response
+        response = s.recv(4096).decode('utf-8')
+        
+        # Scan each line for the word "Word:"
+        for line in response.split('\n'):
+            if 'Word:' in line:
+                the_word = line.split('Word:')[1].strip()
+                return the_word
+
+    return None
+
+the_word = get_word_from_server()
+
+if the_word:
+    print("Received Word:", the_word)
+    
+    # Send the word to the server and receive the response
+    server_response = send_word_to_server(the_word)
+    print("Server response:", server_response)
+    
+else:
+    print("Failed to retrieve the word from the server.")

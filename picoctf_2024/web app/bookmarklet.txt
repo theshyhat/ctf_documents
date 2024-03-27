@@ -1,0 +1,10 @@
+navigate to page
+copy the code
+bookmark the tab
+paste the code in the URL field
+try accessing the page from the bookmark
+
+bookmarklets use javascript code, so they could be used as part of cookie stealing or session hijacking through XSS
+
+
+

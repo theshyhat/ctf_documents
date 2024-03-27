@@ -1,0 +1,14 @@
+Contact other server with netcat to get password
+
+My_Passw@rd_@1234
+defcon
+john draper
+
+there's a python script for the login process in the /root directory
+
+it makes use of the banner file in the user's home directory. we can hijack the banner file to print out the value of the flag.txt file by deleting the banner, then creating a symbolic link to the flag.txt file in the /root directory.
+
+rm banner
+ln -s /root/flag.txt banner
+
+logout, then log back in. The banner will be replaced with the flag.

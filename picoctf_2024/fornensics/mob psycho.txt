@@ -1,0 +1,12 @@
+download the file
+unzip the file
+search for text files using the find command
+
+i've found that sometimes we need to search for long hexdecimal strings in file contents
+
+grep -R -P '\b[0-9a-fA-F]{10,}\b' ./
+
+we could adjust this kind of command to return base64 strings instead
+
+grep -R -oP '\b[A-Za-z0-9+/]{12,}(={0,2}\b|==\b)' ./
+
