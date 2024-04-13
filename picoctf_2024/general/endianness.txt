@@ -1,4 +1,4 @@
-# The program is looking for the ASCII hex representation of the # words it presents to the user.
+# The program is looking for the ASCII hex representation of the # words it presents to the user. NOTE: change the port number in BOTH of the functions before running!!!
 
 import socket
 
