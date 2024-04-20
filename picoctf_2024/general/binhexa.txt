@@ -1,4 +1,4 @@
-This challenge requires scripting skills to connect to the server, record the binary numbers involved, then solve the questions one-by-one
+# This challenge requires scripting skills to connect to the server, record the binary numbers involved, then solve the questions one-by-one. Remember to change the host and port variables at the bottom of the script.
 
 import socket
 
