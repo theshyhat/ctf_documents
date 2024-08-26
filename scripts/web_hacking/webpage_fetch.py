@@ -1,10 +1,11 @@
 '''
-This script uses the Python requests module to make a web request to a specific webpage and writes its contents to a file on the host machine.
+This script uses the Python requests module to make a web request
+to a specific webpage and writes its contents to a file on the host machine.
 '''
 import requests
 
 url = input("Input the desired URL: ")
-output_file = 'webpage_fetch.html'
+output_file = input("What name do you want to give the output file? ")
 
 def fetch_webpage(url, output_file):
   try:
