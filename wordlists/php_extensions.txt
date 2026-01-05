@@ -13,6 +13,8 @@ phar
 inc
 ctp
 module
+theme
+engine
 tpl
 tpl.php
 html.php
